@@ -4,13 +4,17 @@ import Link from 'next/link'
 export default function Home() {
   return (
     <>
-      <div>
+      <div className='m-4'>
         <p className='text-2xl'>College Attendance Record</p>
       </div>
-      <div>
+      <div className='m-4'>
         <p>All in one App to maintain and keep tabs on your school / college attendeance and never miss out on your grades.</p>
-        <Link href="/account/login">Login</Link>
-        <Link href="/account/register">Register</Link>
+        <div className="m-4">
+          <Link href="/account/login" className="bg-black text-white p-2">Login</Link>
+        </div>
+        <div className="m-4">
+          <Link href="/account/register" className="bg-black text-white p-2">Register</Link>
+        </div>
       </div>
     </>
   )
