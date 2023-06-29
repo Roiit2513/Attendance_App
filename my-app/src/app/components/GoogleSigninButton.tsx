@@ -1,14 +1,14 @@
 'use client'
 
 import { redirect, useSearchParams } from 'next/navigation'
-import { signIn } from 'next-auth/react'
+import { signIn, useSession } from 'next-auth/react'
 
 
 
 const GoogleSignInButton = () => {
+  const { data: session } = useSession()
   const searchParams = useSearchParams()
   const callbackUrl = searchParams.get('callbackUrl')
-  console.log(callbackUrl);
 
   const handleGoogleLogin =  () => {
     signIn('google', {callbackUrl: '/'})

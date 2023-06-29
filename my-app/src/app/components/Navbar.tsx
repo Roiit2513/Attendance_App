@@ -10,7 +10,7 @@ const NavbarComp = () => {
                     <Link href="/">Home</Link>
                 </li>
                 <li className="p-1 mx-8 my-1">
-                    <Link href="/dashboard">Dashboard</Link>
+                    {/* <Link href="/dashboard">Dashboard</Link> */}
                 </li>
             </ul>
             <UserNavbar />

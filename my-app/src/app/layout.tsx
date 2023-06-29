@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 
 import NavbarComp from '@/app/components/Navbar'
 import Provider from './components/Provider'
+import { AuthProvider } from '@/firebase/auth'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,10 +20,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Provider>
+        <AuthProvider>
           <NavbarComp />
           {children}
-        </Provider>
+        </AuthProvider>
       </body>
     </html>
   )
