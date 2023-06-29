@@ -4,18 +4,26 @@ import { useContext, createContext, useState, useEffect } from "react";
 import { onAuthStateChanged, signOut as authSignOut } from "firebase/auth";
 import { auth } from "@/firebase/firebase";
 
-const AuthUserContext = createContext({
-    authUser: {},
+type authUserType = {
+    uid: string,
+    email: string,
+    username: string
+}
+const AuthUserContext = createContext<{
+    authUser: authUserType,
+    isLoading: boolean
+}>({
+    authUser: {uid: "", email: "", username: ""},
     isLoading: true
 });
 
 
 export default function useFirebaseAuth(){
-    const [authUser, setAuthUser] = useState({});
+    const [authUser, setAuthUser] = useState({uid: "", email: "", username: ""});
     const [isLoading, setIsLoading] = useState(true);
 
     const clear = () => {
-        setAuthUser({});
+        setAuthUser({uid: "", email: "", username: ""});
         setIsLoading(false);
     }
 
@@ -32,9 +40,8 @@ export default function useFirebaseAuth(){
         })
         setIsLoading(false);
     }
-
-    const signOut = () => {
-        authSignOut(auth).then(() => clear())
+    const signOut = async () => {
+        authSignOut(auth).then(() => {clear()})
     }
 
     useEffect(() => {

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { auth } from "@/firebase/firebase";
 import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { redirect } from "next/navigation";
+import { useAuth } from "@/firebase/auth";
 
 
 
@@ -13,6 +14,13 @@ export default function Login() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const { authUser, isLoading } = useAuth();
+
+    useEffect(() => {
+        if(!isLoading && authUser.email){
+            redirect("/");
+        }
+    }, [authUser, isLoading])
 
     const handleLogin = async () => {
         if (!email || !password) {
@@ -36,7 +44,8 @@ export default function Login() {
             console.log("An error occured", error);
         }
     }
-    return (
+    return (isLoading || (!isLoading && authUser.email)) ? "Loading......." :
+     (
         <>
             <div className='m-4'>
                 <p className="text-2xl">Login Page</p>

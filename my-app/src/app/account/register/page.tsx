@@ -1,8 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { auth } from "@/firebase/firebase";
 import { createUserWithEmailAndPassword, updateProfile, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import useFirebaseAuth, { useAuth } from "@/firebase/auth";
+import { redirect } from "next/navigation";
 
 const provider = new GoogleAuthProvider();
 
@@ -10,6 +12,13 @@ export default function Register() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const { authUser, isLoading } = useAuth();
+
+    useEffect(() => {
+        if(!isLoading && authUser.email){
+            redirect("/");
+        }
+    }, [authUser, isLoading])
 
     const handleRegister = async () => {
         if (!email || !name || !password) {
@@ -20,7 +29,7 @@ export default function Register() {
             const authUser = auth.currentUser!;
             await updateProfile(authUser, {
                 displayName: name
-            })
+            });
             console.log(user);
         } catch (error) {
             console.log("An error occured", error);
@@ -36,7 +45,8 @@ export default function Register() {
         }
     }
 
-    return (
+    return (isLoading || (!isLoading && authUser.email)) ? "Loading......." :
+    (
         <>
             <div className='m-4'>
                 <p className="text-2xl">Register Page</p>
