@@ -6,6 +6,8 @@ import { useEffect, useState } from 'react'
 import { useAuth } from "@/firebase/auth";
 import { collection, addDoc, getDocs, where, query, deleteDoc, updateDoc, doc } from 'firebase/firestore';
 import { db } from '@/firebase/firebase';
+import DailyRecord from '@/app/components/dailyRecord';
+import CalendarBox from '@/app/components/calendar';
 
 export default function Dashboard() {
     const { authUser, isLoading } = useAuth();
@@ -16,7 +18,7 @@ export default function Dashboard() {
         if (!isLoading && !authUser.email) {
             redirect("/account/login");
         }
-        if(!!authUser.email){
+        if (!!authUser.email) {
             fetchSubjects();
         }
     }, [authUser, isLoading])
@@ -59,24 +61,33 @@ export default function Dashboard() {
         <>
             {(subjects.length) ?
                 (
-                    <div className="m-4">
-                        <h2 className='m-4'> Your Subjects</h2 >
-                        {subjects.map((subject) =>
-                            <p key={subject} className='my-4 mx-6 p-2 rounded bg-stone-400 inline'>- {subject}</p>
-                        )}
-                    </div>
+                    <>
+                        <div className="m-4">
+                            <h2 className='m-4'> Your Subjects</h2 >
+                            {subjects.map((subject) =>
+                                <p key={subject} className='my-4 mx-6 p-2 rounded bg-stone-400 inline'>- {subject}</p>
+                            )}
+                        </div>
+                        <div className="flex flex-row min-h-screen">
+                            <DailyRecord />
+                            <CalendarBox />
+                        </div>
+                    </>
                 )
                 :
                 <div className='m-4'>
-                    <h2 className='m-2'>Add Subjects</h2>
+                    <h2 className='mx-4 my-8 text-4xl'>Add Subjects</h2>
+                    {(temp.length) ? (temp.map((subject) =>
+                        <p key={subject} className='mx-4 my-8 p-2 rounded bg-stone-400 inline'>{subject}</p>
+                    )) : (<></>)}
                     <div className="flex m-2">
-                        <input className='m-1 p-2' type="text" placeholder="Enter your subject" value={text} onChange={(e) => setText(e.target.value)} />
+                        <input className='m-4 p-2' type="text" placeholder="Enter your subject" value={text} onChange={(e) => setText(e.target.value)} />
                         <button className='m-1 text-3xl' onClick={handleAdd}>+</button>
                     </div>
                     <button className='m-2 p-2 rounded bg-stone-700 text-white' onClick={handleSubmit}>Submit</button>
                 </div>
             }
-            <h1>DashBoard Page</h1>
+
         </>
     )
 }
