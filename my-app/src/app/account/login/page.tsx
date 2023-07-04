@@ -15,9 +15,11 @@ export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const { authUser, isLoading } = useAuth();
+    const [loader, setLoader] = useState(false);
 
     useEffect(() => {
         if(!isLoading && authUser.email){
+            setLoader(false);
             redirect("/");
         }
     }, [authUser, isLoading])
@@ -27,9 +29,11 @@ export default function Login() {
             return;
         }
         try {
+            setLoader(true);
             const user = await signInWithEmailAndPassword(auth, email, password);
             console.log(user);
             console.log(auth);
+            setLoader(false);
 
         } catch (error) {
             console.log("Error occured ", error);
@@ -37,14 +41,16 @@ export default function Login() {
     }
     const handleGoogleLogin = async () => {
         try {
+            setLoader(true);
             const user = await signInWithPopup(auth, provider);
             console.log(user);
             console.log(auth);
+            setLoader(false);
         } catch (error) {
             console.log("An error occured", error);
         }
     }
-    return (isLoading || (!isLoading && authUser.email)) ? "Loading......." :
+    return (isLoading || (!isLoading && authUser.email) || loader) ? "Loading......." :
      (
         <>
             <div className='m-4'>

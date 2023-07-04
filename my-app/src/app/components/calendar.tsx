@@ -13,8 +13,8 @@ export default function CalendarBox(){
     return(
         <>
         <div className="w-1/2 min-h-full bg-stone-500 flex flex-col items-center">
-            <h1 className="m-8 text-2xl">{date.getDate()}-{date.getMonth()+1}-{date.getFullYear()}</h1>
-            <div className="my-8">
+            <h1 className="m-8 text-4xl underline decoration-double decoration-1 underline-offset-4 font-serif">{date.getDate()}-{date.getMonth()+1}-{date.getFullYear()}</h1>
+            <div className="my-2">
                 <Calendar onChange={onChange} value={date}/>
             </div>
         </div>

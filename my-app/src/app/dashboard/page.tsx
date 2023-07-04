@@ -69,7 +69,7 @@ export default function Dashboard() {
                             )}
                         </div>
                         <div className="flex flex-row min-h-screen">
-                            <DailyRecord />
+                            <DailyRecord subjects={subjects}/>
                             <CalendarBox />
                         </div>
                     </>
