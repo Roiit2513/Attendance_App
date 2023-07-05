@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google'
 import NavbarComp from '@/app/components/Navbar'
 import Provider from './components/Provider'
 import { AuthProvider } from '@/firebase/auth'
+import { ReduxProvider } from '@/redux/provider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -21,8 +22,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <AuthProvider>
-          <NavbarComp />
-          {children}
+          <ReduxProvider>
+            <NavbarComp />
+            {children}
+          </ReduxProvider>
         </AuthProvider>
       </body>
     </html>
