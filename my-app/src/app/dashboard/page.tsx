@@ -16,6 +16,7 @@ export default function Dashboard() {
     const [text, setText] = useState("")
     const [temp, setTemp] = useState<string[]>([]);
     const [loader, setLoader] = useState(false);
+    const [total, setTotal] = useState<any[]>([])
 
     useEffect(() => {
         if (!isLoading && !authUser.email) {
@@ -31,9 +32,17 @@ export default function Dashboard() {
     const handleAdd = () => {
         if (text) {
             setTemp(arr => [...arr, text])
+            let object = {
+                subject: text,
+                presentCount: 0,
+                absentCount: 0,
+                percentage: 0,
+            }
+            setTotal(total => [...total, object]);
             setText("");
         }
     }
+
     const handleSubmit = async () => {
         try {
             setLoader(true);
@@ -41,6 +50,8 @@ export default function Dashboard() {
                 owner: authUser.uid,
                 email: authUser.email,
                 subjects: temp,
+                attendance: [],
+                total: total,
             })
             console.log("Document written with ID: ", docRef.id);
             fetchSubjects();
@@ -78,12 +89,6 @@ export default function Dashboard() {
                 {(subjects.length) ?
                     (
                         <>
-                            <div className="m-4">
-                                <h2 className='m-4'> Your Subjects</h2 >
-                                {subjects.map((subject) =>
-                                    <p key={subject} className='my-4 mx-6 p-2 rounded bg-stone-400 inline'>- {subject}</p>
-                                )}
-                            </div>
                             <div className="flex flex-row min-h-screen">
                                 <DailyRecord subjects={subjects} />
                                 <CalendarBox />
