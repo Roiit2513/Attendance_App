@@ -23,7 +23,7 @@ const UserNavbar = () => {
     return (!isLoading && authUser.email) ? 
     (
         <>
-            <ul className='flex'>
+            <ul className='flex text-xl font-sans'>
                 <li className="p-2 mx-8 my-1">
                     <Link href="">Welcome {authUser?.username}</Link>
                 </li>

@@ -6,10 +6,10 @@ const NavbarComp = () => {
         <>
         <div className="p-2 flex justify-between bg-stone-300">
             <ul className="p-1 flex ">
-                <li className="p-1 mx-8 my-1">
+                <li className="p-1 mx-8 my-1 text-xl font-sans">
                     <Link href="/">Home</Link>
                 </li>
-                <li className="p-1 mx-8 my-1">
+                <li className="p-1 mx-8 my-1 text-xl font-sans">
                     <Link href="/dashboard">Dashboard</Link>
                 </li>
             </ul>

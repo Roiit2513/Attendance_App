@@ -1,14 +1,16 @@
 'use client'
 
-import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { useAuth } from "@/firebase/auth";
+import { RingLoader } from 'react-spinners';
+
 import { collection, addDoc, getDocs, where, query, deleteDoc, updateDoc, doc } from 'firebase/firestore';
 import { db } from '@/firebase/firebase';
+import { useAuth } from "@/firebase/auth";
+
 import DailyRecord from '@/app/components/dailyRecord';
 import CalendarBox from '@/app/components/calendar';
-import { RingLoader } from 'react-spinners';
+import Percentage from "@/app/components/percentage";
 
 export default function Dashboard() {
     const { authUser, isLoading } = useAuth();
@@ -89,6 +91,7 @@ export default function Dashboard() {
                 {(subjects.length) ?
                     (
                         <>
+                            <Percentage />
                             <div className="flex flex-row min-h-screen">
                                 <DailyRecord subjects={subjects} />
                                 <CalendarBox />

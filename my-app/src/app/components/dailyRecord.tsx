@@ -1,12 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Calender from "./calendar";
 import { useAppSelector } from "@/redux/store";
+import { RingLoader } from 'react-spinners';
+
 import { useAuth } from "@/firebase/auth";
 import { collection, addDoc, getDocs, where, query, deleteDoc, updateDoc, doc } from 'firebase/firestore';
 import { db } from '@/firebase/firebase';
-import { RingLoader } from 'react-spinners';
 
 
 export default function DailyRecord(props: any) {
@@ -85,7 +85,22 @@ export default function DailyRecord(props: any) {
             record: record,
         }
         console.log(object);
+        let newTotal = total;
+        record.forEach((ele: any) => {
+            newTotal.forEach((sub: any) => {
+                if(sub.subject == ele.subject){
+                    if(ele.status == "Present"){
+                        sub.presentCount = sub.presentCount + 1;
+                    }
+                    if(ele.status == "Absent"){
+                        sub.absentCount = sub.absentCount + 1;
+                    }
+                    sub.percentage = ((sub.presentCount)/(sub.presentCount + sub.absentCount))*100;
+                }
+            })
+        });
         setAttendance(attendance => [...attendance, object]);
+        setTotal(newTotal)
         setToggleSubmit(!toggleSubmit);
     }
     const UpdateDocument = async () => {
