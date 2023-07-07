@@ -26,7 +26,7 @@ const UserNavbar = () => {
         <>
             <ul id='nav-2' className='flex text-xl font-sans'>
                 <li id='nav-login' className="p-2 mx-8 my-1">
-                    <Link href="">Welcome {(authUser?.username).split(" ")[0]}</Link>
+                    <Link href="">Welcome {(authUser?.username)}</Link>
                 </li>
                 <li id='nav-register' className="p-2 mx-8 my-1">
                     <button onClick={handleSignOut}>Logout</button>
