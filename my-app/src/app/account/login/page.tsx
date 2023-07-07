@@ -63,7 +63,7 @@ export default function Login() {
                     <p className="text-2xl">Login Page</p>
                 </div>
                 <div className='m-4'>
-                    <form action="" onSubmit={(e) => e.preventDefault()}>
+                    <form id="login-form" action="" onSubmit={(e) => e.preventDefault()}>
                         <input className='m-2 p-1 border-b-4 focus:outline-none' type="email" name="" id="" placeholder="Enter Email" onChange={(event) => setEmail(event.target.value)} required />
                         <input className='m-2 p-1 border-b-4 focus:outline-none' type="password" name="" id="" placeholder="Enter Password" onChange={(event) => setPassword(event.target.value)} required />
                         <button type="submit" className="bg-stone-700 text-white p-2 m-2 rounded" onClick={handleLogin}>Log In</button>

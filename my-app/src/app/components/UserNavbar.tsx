@@ -5,6 +5,7 @@ import { useSession, signIn, signOut } from 'next-auth/react';
 import useFirebaseAuth, { useAuth } from "@/firebase/auth";
 import { useEffect, useState } from 'react';
 import { redirect } from 'next/navigation';
+import "@/CSS/home.css";
 
 const UserNavbar = () => {
     const { authUser, isLoading } = useAuth();
@@ -23,11 +24,11 @@ const UserNavbar = () => {
     return (!isLoading && authUser.email) ? 
     (
         <>
-            <ul className='flex text-xl font-sans'>
-                <li className="p-2 mx-8 my-1">
-                    <Link href="">Welcome {authUser?.username}</Link>
+            <ul id='nav-2' className='flex text-xl font-sans'>
+                <li id='nav-login' className="p-2 mx-8 my-1">
+                    <Link href="">Welcome {(authUser?.username).split(" ")[0]}</Link>
                 </li>
-                <li className="p-2 mx-8 my-1">
+                <li id='nav-register' className="p-2 mx-8 my-1">
                     <button onClick={handleSignOut}>Logout</button>
                 </li>
             </ul>
@@ -37,11 +38,11 @@ const UserNavbar = () => {
     :
     (
         <>
-            <ul className='flex'>
-                <li className="p-2 mx-8 my-1">
+            <ul id='nav-2' className='flex'>
+                <li id='nav-login' className="p-2 mx-8 my-1">
                     <Link href="/account/login">Login</Link>
                 </li>
-                <li className="p-2 mx-8 my-1">
+                <li id='nav-register' className="p-2 mx-8 my-1">
                     <Link href="/account/register">Register</Link>
                 </li>
             </ul>

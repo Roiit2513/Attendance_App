@@ -1,0 +1,30 @@
+@media screen and (max-width: 920px) {
+    #percentage{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    #percentage-graph{
+        width: 50%;
+        max-width: 250px;
+    }
+    #dashboard{
+        flex-direction: column-reverse;
+    }
+    #calendar{
+        width: 100%;
+    }
+    #calendar-box{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #dailyRecord{
+        width: 100%;
+    }
+    #dailyRecord-subject{
+        width: 90%;
+        flex-direction: column;
+    }
+}

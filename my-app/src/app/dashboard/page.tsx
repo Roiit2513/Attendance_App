@@ -11,6 +11,7 @@ import { useAuth } from "@/firebase/auth";
 import DailyRecord from '@/app/components/dailyRecord';
 import CalendarBox from '@/app/components/calendar';
 import Percentage from "@/app/components/percentage";
+import "@/CSS/dashboard.css";
 
 export default function Dashboard() {
     const { authUser, isLoading } = useAuth();
@@ -92,7 +93,7 @@ export default function Dashboard() {
                     (
                         <>
                             <Percentage />
-                            <div className="flex flex-row min-h-screen">
+                            <div id='dashboard' className="flex flex-row min-h-screen">
                                 <DailyRecord subjects={subjects} />
                                 <CalendarBox />
                             </div>

@@ -5,6 +5,7 @@ import "@/CSS/calendarStyles.css";
 import { setCurrDate } from "@/redux/features/date";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/redux/store";
+import "@/CSS/dashboard.css";
 
 export default function CalendarBox(){
 
@@ -20,9 +21,9 @@ export default function CalendarBox(){
     }
     return(
         <>
-        <div className="w-1/2 min-h-full bg-stone-500 flex flex-col items-center">
-            <h1 className="m-8 text-4xl underline decoration-double decoration-1 underline-offset-4 font-serif">{DateString}</h1>
-            <div className="my-2">
+        <div id="calendar" className="w-1/2 min-h-full bg-stone-500 flex flex-col items-center">
+            <h1 id="calendar-date" className="m-8 text-4xl underline decoration-double decoration-1 underline-offset-4 font-serif">{DateString}</h1>
+            <div id="calendar-box" className="my-2">
                 <Calendar onChange={onChange} value={date}/>
             </div>
         </div>

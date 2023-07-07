@@ -8,6 +8,8 @@ import { collection, addDoc, getDocs, where, query, deleteDoc, updateDoc, doc } 
 import { db } from '@/firebase/firebase';
 import { useAuth } from "@/firebase/auth";
 
+import "@/CSS/dashboard.css";
+
 
 export default function Percentage() {
     const currDate = useAppSelector((state) => state.currDateReducer.value.DateString);
@@ -51,11 +53,11 @@ export default function Percentage() {
         }
     }
     return(
-        <div className="flex justify-around w-screen bg-stone-800">
+        <div id="percentage" className="flex justify-around w-screen bg-stone-800">
             {
                 total.map((obj) => {
                     return(
-                        <div key={obj.subject} className="flex flex-col m-4 justify-center items-center w-1/12">
+                        <div id="percentage-graph" key={obj.subject} className="flex flex-col m-4 justify-center items-center w-1/12">
                             <Doughnut data={{labels: [], datasets: [{label: obj.subject, data: [Math.round(obj.percentage), 100-Math.round(obj.percentage)], backgroundColor: ["white", "rgb(41 37 36)"], borderColor: ["rgb(41 37 36)"],}]}} height={100} width={100} plugins={[textCenter]}/>
                             <p className="text-center mt-2 text-white">{obj.subject}</p>
                         </div>

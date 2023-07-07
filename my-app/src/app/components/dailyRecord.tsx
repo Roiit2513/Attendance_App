@@ -130,14 +130,14 @@ export default function DailyRecord(props: any) {
     :
      (
         <>
-            <div className="w-1/2 flex flex-col items-center bg-stone-200 min-h-full">
+            <div id="dailyRecord" className="w-1/2 flex flex-col items-center bg-stone-200 min-h-full">
                 <p className="underline underline-offset-4 mt-8 mb-2 text-4xl uppercase font-serif">Daily</p>
                 <p className="underline underline-offset-4 mb-8 text-4xl uppercase font-serif"> Record</p>
                 {(record.length) ?
                     (
                         record.map((obj) => {
                             return (
-                                <div key={obj.subject} className="flex bg-stone-700 w-3/4 my-2 rounded-md justify-between items-center">
+                                <div id="dailyRecord-subject" key={obj.subject} className="flex bg-stone-700 w-3/4 my-2 rounded-md justify-between items-center">
                                     <p key={obj.subject + "heading"} className="py-2 px-8 text-white font-mono text-xl">{obj.subject}</p>
                                     <div key={obj.subject} className="flex">
                                         <button key={obj.subject + "Present"} id={obj.subject + "Present"} name={obj.subject} value="Present" className={(obj.status == "Present") ? "p-2 m-2 my-4 rounded-lg bg-stone-300" : "p-2 m-2 my-4 rounded-lg bg-stone-500"} onClick={handleSelect}>Present</button>

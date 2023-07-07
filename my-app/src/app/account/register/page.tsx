@@ -66,7 +66,7 @@ export default function Register() {
                     <p className="text-2xl">Register Page</p>
                 </div>
                 <div className='m-4'>
-                    <form action="" onSubmit={(e) => e.preventDefault()}>
+                    <form id="login-form" action="" onSubmit={(e) => e.preventDefault()}>
                         <input className='m-2 p-1 border-b-4 focus:outline-none' type="text" name="" id="" placeholder="Enter Name" onChange={(event) => setName(event.target.value)} required />
                         <input className='m-2 p-1 border-b-4 focus:outline-none' type="email" name="" id="" placeholder="Enter Email" onChange={(event) => setEmail(event.target.value)} required />
                         <input className='m-2 p-1 border-b-4 focus:outline-none' type="password" name="" id="" placeholder="Enter Password" onChange={(event) => setPassword(event.target.value)} required />
